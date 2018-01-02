@@ -61,6 +61,8 @@ class PostController extends Controller
             'slug' => str_slug($request->title)
         ]);
 
+        
+
         Session::flash('success', 'Post created siccesfully');
         return redirect()->back();
     }
