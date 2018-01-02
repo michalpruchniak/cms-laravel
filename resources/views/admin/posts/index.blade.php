@@ -20,6 +20,7 @@
         <tbody>
             @if($posts->count() > 0)
                 @foreach($posts as $post)
+                <tr>
                     <td><img src="{{ $post->featured }}" alt="{{ $post->title }}" width="80"></td>
                     <td>{{ $post->title }}</td>
                     <td>
@@ -28,7 +29,7 @@
                     <td>
                         <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger btn-sm">Trash</a>
                     </td>
-                
+                </tr>
                 @endforeach
             @else
             <tr>

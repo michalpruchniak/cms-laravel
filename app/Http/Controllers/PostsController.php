@@ -26,6 +26,12 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
+        if($categories->count() == 0){
+            Session::flash('info', "You must have some categories before attempting to create a post");
+            return redirect()->back();
+        }
+        return view('admin.posts.create')->with('categories', $categories);
     }
 
     /**
@@ -36,7 +42,28 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'featured' => 'required|image',
+            'content' => 'required',
+            'category' => 'category'
+        ]);
+
+        $featured = $request->featured;
+        $featured_new_name = time().$featured->getClientOriginalName();
+        $featured->move('uploads/posts', $featured_new_name);
+
+        // $post = new Post;
+        $post = Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'featured' => 'uploads/posts/' . $featured_new_name,
+            'category_id' => $request->category_id,
+            'slug' => str_slug($request->title)
+        ]);
+
+        Session::flash('success', 'Post created siccesfully');
+        return redirect()->back();
     }
 
     /**
@@ -61,6 +88,8 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         return view('admin.posts.edit')->with('post', $post)->with('categories', Category::all());
+
+        
     }
 
     /**

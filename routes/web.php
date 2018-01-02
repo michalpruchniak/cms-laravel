@@ -26,11 +26,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         'as' => 'home'
     ]);
     Route::get('/post/create', [
-        'uses' => 'PostController@create',
+        'uses' => 'PostsController@create',
         'as' => 'post.create'
     ]);
     Route::post('/post/store', [
-        'uses' => 'PostController@store',
+        'uses' => 'PostsController@store',
         'as' => 'post.store'
     ]);
     Route::get('/category/create', [
