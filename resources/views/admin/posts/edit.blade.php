@@ -35,6 +35,22 @@
                     @endforeach
                 </select>
             </div>
+            
+            <div class="form-group">
+                <p><label for="tags">Select tags<label></p>
+            @foreach($tags as $tag)
+            <div class="form-check">
+                <input type="checkbox" id="tag_{{ $tag->id }}" name="tags[]" class="form-check-input" value="{{ $tag->id }}"
+                     @foreach($post->tags as $t)
+                        @if($tag->id == $t->id)
+                            checked
+                        @endif
+                     @endforeach           
+                >
+                <label class="form-check-label" for="tag_{{ $tag->id }}">{{ $tag->tag }}</label>
+              </div>
+            @endforeach
+        </div>
             <div class="form-group">
                 <label for="content">Content</label>
                 <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $post->content }}</textarea>
