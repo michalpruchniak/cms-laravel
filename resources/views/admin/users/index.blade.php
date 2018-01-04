@@ -8,26 +8,30 @@
                 Image
             </th>
             <th>
-                Title
+                Name
             </th>
             <th>
-                Edit
+                Permissions
             </th>
             <th>
-                Trash
+                Delete
             </th>
         </thead>
         <tbody>
-            @if($posts->count() > 0)
-                @foreach($posts as $post)
+            @if($users->count() > 0)
+                @foreach($users as $user)
                 <tr>
-                    <td><img src="{{ $post->featured }}" alt="{{ $post->title }}" height="40"></td>
-                    <td>{{ $post->title }}</td>
                     <td>
-                        <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                        <img src="{{ asset($user->profile->avatar) }}" alt="" width="60px" height="60px" style="border-radius: 50%">
                     </td>
                     <td>
-                        <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger btn-sm">Trash</a>
+                        {{ $user->name }}
+                    </td>
+                    <td>
+                        Permissions
+                    </td>
+                    <td>
+                        Delete
                     </td>
                 </tr>
                 @endforeach
