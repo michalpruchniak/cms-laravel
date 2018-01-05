@@ -35,7 +35,8 @@
                         @endif
                     </td>
                     <td>
-                        Delete
+                        <a href="{{ route('user.delete', ['id' => $user->id])}}" class="btn btn-danger btn-sm">Delete</a>
+                        {{--  <a href="{{ route('user.delete', ['id' => $user->id])}}" class="btn btn-success btn-sm">Delete</a>  --}}
                     </td>
                 </tr>
                 @endforeach
