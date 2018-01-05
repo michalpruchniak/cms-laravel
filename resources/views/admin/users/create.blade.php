@@ -5,7 +5,7 @@
 @include('admin.includes.errors');
 <div class="panel panel-default">
     <div class="panel-heading">
-        Create a new tag
+        Create a new user
     </div>
     <div class="panel-body">
         <form action="{{ route('user.store') }}" method="post">
