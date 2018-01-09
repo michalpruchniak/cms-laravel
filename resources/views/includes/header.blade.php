@@ -1,6 +1,6 @@
     <div class="container">
             <div class="header-content-wrapper">
-                <div class="logo-title">{{ $title }}</div>
+                <div class="logo-title">{{ $settings->site_name }}</div>
 
                 <nav id="primary-menu" class="primary-menu">
                     <a href='javascript:void(0)' id="menu-icon-trigger" class="menu-icon-trigger showhide">
