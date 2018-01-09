@@ -28,6 +28,16 @@ Route::get('/tag/{id}', [
     'uses' => 'FrontEndController@tag',
     'as' => 'tag.single'
 ]);
+Route::get('/results', function(){
+    $post = \App\Post::where('title', 'like', '%' . request('query') . '%')->get();
+
+    return view('results')
+                ->with('posts', $post)
+                ->with('title', 'Search results : ' . request('query'))
+                ->with('settings', \App\Setting::first())
+                ->with('categories', \App\Category::take(5)->get())
+                ->with('query', request('query'));
+});
 Auth::routes();
 
 
